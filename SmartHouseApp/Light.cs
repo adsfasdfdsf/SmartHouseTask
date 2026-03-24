@@ -7,11 +7,14 @@ public class Light
     // Текущее состояние: true = включено, false = выключено
     public bool IsOn { get; private set; }
 
+    private ILightState _state;
+    
     // Конструктор, устанавливающий название комнаты и начальное состояние (выключено)
     public Light(string room)
     {
         Room = room;
         IsOn = false;
+        _state = new OffState();
     }
 
     // Метод для включения света
@@ -31,7 +34,7 @@ public class Light
     // Метод для получения текущего состояния устройства в виде строки
     public string GetStatus()
     {
-        return IsOn ? "On" : "Off";
+        return _state.GetStatus();
     }
 
     public LightMemento CreateMemento()
@@ -43,5 +46,10 @@ public class Light
     {
         IsOn = memento.GetIsOn();
         Room = memento.GetRoomName();
+    }
+
+    public void SetState(ILightState state)
+    {
+        _state = state;
     }
 }

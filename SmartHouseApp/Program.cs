@@ -56,6 +56,16 @@ namespace SmartHomeMVP
             light.Restore(memento);
             Console.WriteLine("Status after Restore: " + light.GetStatus());
 
+            Console.WriteLine("Initial state: " + light.GetStatus());
+            
+            // Переключаем состояние на On
+            light.SetState(new OnState());
+            Console.WriteLine("After setting to On: " + light.GetStatus());
+            
+            // Переключаем состояние на Off
+            light.SetState(new OffState());
+            Console.WriteLine("After setting to Off: " + light.GetStatus());
+            
             Console.ReadLine();
         }
     }

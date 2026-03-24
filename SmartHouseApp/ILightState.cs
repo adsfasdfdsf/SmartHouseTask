@@ -2,5 +2,5 @@ namespace SmartHomeMVP;
 
 public interface ILightState
 {
-    string GetStatus(Light light);
+    string GetStatus();
 }
